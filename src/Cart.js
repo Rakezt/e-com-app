@@ -91,7 +91,7 @@ const EmptyDiv = styled.div`
 
 const Wrapper = styled.section`
   padding: 9rem 0;
-  margin: 18rem;
+  margin: 10rem;
   .grid-four-column {
     grid-template-columns: repeat(4, 1fr);
   }
