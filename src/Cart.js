@@ -12,7 +12,7 @@ const Cart = () => {
   if (cart.length === 0) {
     return (
       <EmptyDiv>
-        <h3>Cart is Empty</h3>
+        <h3> 😭 Cart is Empty</h3>
       </EmptyDiv>
     );
   }
