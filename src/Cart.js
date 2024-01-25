@@ -68,6 +68,9 @@ const Cart = () => {
               </p>
             </div>
           </div>
+          <NavLink to="/order">
+            <Button>Place Order</Button>
+          </NavLink>
         </div>
       </div>
     </Wrapper>

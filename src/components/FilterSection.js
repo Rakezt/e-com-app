@@ -134,7 +134,7 @@ const FilterSection = () => {
   );
 };
 const Wrapper = styled.section`
-  margin-top: 3rem;
+  margin-top: 12rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;

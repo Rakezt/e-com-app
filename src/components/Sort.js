@@ -52,7 +52,7 @@ const Sort = () => {
 const Wrapper = styled.section`
   display: flex;
   justify-content: space-between;
-  margin-top: 3rem;
+  margin-top: 12rem;
   padding: 3rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;

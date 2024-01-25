@@ -59,6 +59,7 @@ const Wrapper = styled.section`
       margin-bottom: 0;
       color: rgb(235, 143, 52);
       font-weight: bold;
+      font-size: 3rem;
     }
   }
 
@@ -71,6 +72,7 @@ const Wrapper = styled.section`
   }
   figure {
     position: relative;
+    box-radius: 0.5rem;
 
     &::after {
       content: "";

@@ -15,7 +15,7 @@ const FeatureProduct = () => {
     <Wrapper className="section">
       <div className="container">
         <div className="intro-data">Check Now!</div>
-        <div className="common-heading">Our Feature Services</div>
+        <div className="common-heading">Our Feature Products</div>
         <div className="grid grid-three-column">
           {featureProducts.map((item) => {
             return <Product key={item.id} {...item} />;
@@ -31,6 +31,13 @@ const Wrapper = styled.section`
 
   .container {
     max-width: 120rem;
+  }
+
+  .intro-data {
+    margin-bottom: 0;
+    color: rgb(235, 143, 52);
+    font-weight: bold;
+    font-size: 3rem;
   }
 
   figure {
