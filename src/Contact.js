@@ -5,6 +5,7 @@ const Contact = () => {
   const { isAuthenticated, user } = useAuth0();
   const Wrapper = styled.section`
     padding: 9rem 0 5rem 0;
+    margin-top: 5rem;
     text-align: center;
 
     .map {

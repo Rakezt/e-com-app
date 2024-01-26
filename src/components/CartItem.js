@@ -2,9 +2,14 @@ import FormatPrice from "../Helper/FormatPrice";
 import CartAmountToggle from "./CartAmountToggle";
 import { FaTrash } from "react-icons/fa";
 import { useCartContext } from "../context/cartContext";
+import { useEffect } from "react";
 
 const CartItem = ({ id, name, price, image, activeColor, amount }) => {
   const { removeItem, setIncrease, setDecrease } = useCartContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="cart-heading grid grid-five-column">

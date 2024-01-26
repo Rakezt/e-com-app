@@ -21,6 +21,7 @@ const Order = () => {
 };
 
 const Wrapper = styled.section`
+  margin-top: 5rem;
   .container {
     padding: 9rem 0;
     text-align: center;
