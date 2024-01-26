@@ -7,11 +7,14 @@ const CartContext = createContext();
 
 const getLocalStorageItem = () => {
   let localUpdatedCart = localStorage.getItem("shoppingCart");
-  if (localUpdatedCart === null) {
-    return [];
-  } else {
-    return JSON.parse(localUpdatedCart);
-  }
+  // if (localUpdatedCart === null) {
+  //   return [];
+  // } else {
+  //   return JSON.parse(localUpdatedCart);
+  // }
+  const parsedData = JSON.parse(localUpdatedCart);
+  if (!Array.isArray(parsedData)) return [];
+  return parsedData;
 };
 
 const initialState = {

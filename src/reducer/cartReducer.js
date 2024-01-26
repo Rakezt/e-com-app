@@ -13,7 +13,6 @@ const cartReducer = (state, action) => {
           if (newAmount >= item.max) {
             newAmount = item.max;
           }
-          console.log(item);
           return {
             ...item,
             amount: newAmount,
