@@ -3,12 +3,12 @@
 
 An ecommerce application build with love.
 
-##Tech stack
+## Tech stack
 Html, CSS, React JS
 
-##Library
+## Library
 1. Styled component for style.
 2. Formspree for form submission.
 3. Auth0 for authentication.
    
-API used (https://api.pujakaitem.com/api/products)
+_API used (https://api.pujakaitem.com/api/products)_
