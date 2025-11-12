@@ -7,7 +7,7 @@ function Header() {
   return (
     <MainHeader>
       <NavLink to='/'>
-        <img src='/images/logo.png' alt=' alternate logo' width='60px' />
+        <img src='/images/logo.png' alt=' alternate logo' width='40px' />
       </NavLink>
       {/* https://r2.easyimg.io/pheet724x/login_logo.png */}
       <Nav />
@@ -16,7 +16,7 @@ function Header() {
 }
 const MainHeader = styled.header`
   padding: 0 4.8rem;
-  height: 8rem;
+  height: 6rem;
   background-color: ${({ theme }) => theme.colors.bg};
   display: flex;
   justify-content: space-between;
