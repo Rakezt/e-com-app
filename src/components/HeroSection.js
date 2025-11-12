@@ -14,8 +14,8 @@ const HeroSection = ({ myData }) => {
             <h2>{name}</h2>
             <p className='title-design'>SkateBoard Store</p>
             <p>
-              Tear up the streets with YourSweetNightmare Skate Store — built
-              for the outcasts, the misfits, and the ones who ride against the
+              Tear up the streets with YourSweetNightmare SkateBoard — built for
+              the outcasts, the misfits, and the ones who ride against the
               grain. Our decks don’t just roll; they riot. From cracked pavement
               to midnight sessions, we keep your wheels screaming and your grip
               locked. No rules. No limits. Just pure chaos on four wheels.
