@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { FiShoppingCart } from "react-icons/fi";
-import { CgMenu, CgClose } from "react-icons/cg";
-import { useCartContext } from "../context/cartContext";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "../styles/Button";
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { FiShoppingCart } from 'react-icons/fi';
+import { CgMenu, CgClose } from 'react-icons/cg';
+import { useCartContext } from '../context/cartContext';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from '../styles/Button';
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
@@ -15,7 +15,7 @@ const Nav = () => {
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
-      gap: 4.8rem;
+      gap: 4rem;
       align-items: center;
 
       .navbar-link {
@@ -23,8 +23,8 @@ const Nav = () => {
         &:visited {
           display: inline-block;
           text-decoration: none;
-          font-size: 1.9rem;
-          font-weight: 500;
+          font-size: 1.5rem;
+          font-weight: 700;
           text-transform: uppercase;
           color: ${({ theme }) => theme.colors.black};
           transition: color 0.3s linear;
@@ -44,7 +44,7 @@ const Nav = () => {
       border: none;
     }
 
-    .mobile-nav-icon[name="close-outline"] {
+    .mobile-nav-icon[name='close-outline'] {
       display: none;
     }
 
@@ -144,7 +144,7 @@ const Nav = () => {
         transition: all 3s linear;
 
         .navbar-link {
-          font-size: 4.2rem;
+          font-size: 4rem;
         }
       }
       .cart-trolley--link {
@@ -172,12 +172,12 @@ const Nav = () => {
 
   return (
     <Nav>
-      <div className={menuIcon ? "navbar active" : "navbar"}>
-        <ul className="navbar-lists">
+      <div className={menuIcon ? 'navbar active' : 'navbar'}>
+        <ul className='navbar-lists'>
           <li>
             <NavLink
-              to="/"
-              className="navbar-link "
+              to='/'
+              className='navbar-link '
               onClick={() => setMenuIcon(false)}
             >
               Home
@@ -185,8 +185,8 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              to="/about"
-              className="navbar-link "
+              to='/about'
+              className='navbar-link '
               onClick={() => setMenuIcon(false)}
             >
               About
@@ -194,8 +194,8 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              to="/products"
-              className="navbar-link "
+              to='/products'
+              className='navbar-link '
               onClick={() => setMenuIcon(false)}
             >
               Products
@@ -203,8 +203,8 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              to="/contact"
-              className="navbar-link "
+              to='/contact'
+              className='navbar-link '
               onClick={() => setMenuIcon(false)}
             >
               Contact
@@ -229,22 +229,22 @@ const Nav = () => {
           )}
 
           <li>
-            <NavLink to="/cart" className="navbar-link cart-trolley--link">
-              <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item"> {total_item} </span>
+            <NavLink to='/cart' className='navbar-link cart-trolley--link'>
+              <FiShoppingCart className='cart-trolley' />
+              <span className='cart-total--item'> {total_item} </span>
             </NavLink>
           </li>
         </ul>
 
-        <div className="mobile-navbar-btn">
+        <div className='mobile-navbar-btn'>
           <CgMenu
-            name="menu-outline"
-            className="mobile-nav-icon"
+            name='menu-outline'
+            className='mobile-nav-icon'
             onClick={() => setMenuIcon(true)}
           />
           <CgClose
-            name="close-outline"
-            className="mobile-nav-icon close-outline"
+            name='close-outline'
+            className='mobile-nav-icon close-outline'
             onClick={() => setMenuIcon(false)}
           />
         </div>

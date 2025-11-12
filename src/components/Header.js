@@ -1,13 +1,13 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import Nav from "./Nav";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import Nav from './Nav';
 
 function Header() {
   return (
     <MainHeader>
-      <NavLink to="/">
-        <img src="/images/logo.png" alt=" alternate logo" width="80px" />
+      <NavLink to='/'>
+        <img src='/images/logo.png' alt=' alternate logo' width='60px' />
       </NavLink>
       {/* https://r2.easyimg.io/pheet724x/login_logo.png */}
       <Nav />
@@ -16,7 +16,7 @@ function Header() {
 }
 const MainHeader = styled.header`
   padding: 0 4.8rem;
-  height: 10rem;
+  height: 8rem;
   background-color: ${({ theme }) => theme.colors.bg};
   display: flex;
   justify-content: space-between;
