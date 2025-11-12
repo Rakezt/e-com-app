@@ -218,13 +218,19 @@ const Nav = () => {
                 onClick={() =>
                   logout({ logoutParams: { returnTo: window.location.origin } })
                 }
+                className='user-logout'
               >
                 Log Out
               </Button>
             </li>
           ) : (
             <li>
-              <Button onClick={() => loginWithRedirect()}>Log In</Button>
+              <Button
+                onClick={() => loginWithRedirect()}
+                className='user-login'
+              >
+                Log In
+              </Button>
             </li>
           )}
 
