@@ -1,12 +1,12 @@
-import React from "react";
-import HeroSection from "./components/HeroSection";
+import React from 'react';
+import HeroSection from './components/HeroSection';
 
 const About = () => {
-  const data = { name: "BANG BANG STORYLINE" };
+  const data = { name: 'YourSweetNightmare' };
   return (
     <div>
       <HeroSection myData={data} />
-      <div className="container">
+      <div className='container'>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
           deleniti neque ipsam, repellendus eveniet omnis. Quis, incidunt

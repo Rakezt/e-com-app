@@ -5,7 +5,7 @@ import Trusted from './components/Trusted';
 import FeatureProduct from './components/FeatureProduct';
 
 const Home = () => {
-  const data = { name: 'YourSweetNightmare SkateBoard Store' };
+  const data = { name: 'YourSweetNightmare' };
   return (
     <div>
       <HeroSection myData={data} />

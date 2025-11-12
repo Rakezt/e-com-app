@@ -12,6 +12,7 @@ const HeroSection = ({ myData }) => {
           <div className='hero-section-data'>
             <p className='intro-data'>Welcome to</p>
             <h2>{name}</h2>
+            <p className='title-design'>SkateBoard Store</p>
             <p>
               Tear up the streets with YourSweetNightmare Skate Store — built
               for the outcasts, the misfits, and the ones who ride against the
@@ -42,8 +43,12 @@ const Wrapper = styled.section`
   padding: 12rem 0;
 
   img {
-    min-width: 10rem;
+    width: 90%;
+    max-width: 500px;
     height: 10rem;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
   }
 
   .hero-section-data {
@@ -52,13 +57,15 @@ const Wrapper = styled.section`
     }
 
     h2 {
-      font-family: 'Fontdiner Swanky', serif;
+      font-family: 'New Rocker', system-ui;
       font-weight: 400;
+      font-style: normal;
       font-size: 4.5rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #000;
       text-shadow: 2px 2px rgb(235, 143, 52);
+      text-decoration: underline;
     }
 
     .intro-data {
@@ -66,6 +73,10 @@ const Wrapper = styled.section`
       color: rgb(235, 143, 52);
       font-weight: bold;
       font-size: 3rem;
+    }
+    .title-design {
+      color: #000;
+      font-size: 2rem;
     }
   }
 
