@@ -1,16 +1,16 @@
-import styled from "styled-components";
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useProductContext } from "./context/productContext";
-import { Container } from "./styles/Container";
-import MyImages from "./components/MyImages";
-import FormatPrice from "./Helper/FormatPrice";
-import { TbTruckDelivery, TbReplace } from "react-icons/tb";
-import { MdSecurity } from "react-icons/md";
-import Stars from "./components/Stars";
-import AddToCart from "./components/AddToCart";
+import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useProductContext } from './context/productContext';
+import { Container } from './styles/Container';
+import MyImages from './components/MyImages';
+import FormatPrice from './Helper/FormatPrice';
+import { TbTruckDelivery, TbReplace } from 'react-icons/tb';
+import { MdSecurity } from 'react-icons/md';
+import Stars from './components/Stars';
+import AddToCart from './components/AddToCart';
 
-const API = "https://api.pujakaitem.com/api/products";
+const API = 'https://api.pujakaitem.com/api/products';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -31,7 +31,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
-  }, []);
+  }, [getSingleProduct, id]);
 
   if (isSingleLoading) {
     <p>Loading.........</p>;
@@ -39,42 +39,42 @@ const SingleProduct = () => {
 
   return (
     <Wrapper>
-      <Container className="container">
-        <div className="grid grid-two-column">
-          <div className="product_images">
+      <Container className='container'>
+        <div className='grid grid-two-column'>
+          <div className='product_images'>
             <MyImages image={image} />
           </div>
-          <div className="product-data">
+          <div className='product-data'>
             <h2>{name}</h2>
             <Stars stars={stars} reviews={reviews} />
-            <p className="product-data-price">
+            <p className='product-data-price'>
               MRP:
               <del>
                 <FormatPrice price={price + 250000} />
               </del>
             </p>
-            <p className="product-data-price product-data-real-price">
+            <p className='product-data-price product-data-real-price'>
               Deal of the Day: <FormatPrice price={price} />
             </p>
             <p>{description}</p>
-            <div className="product-data-warranty">
-              <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />
+            <div className='product-data-warranty'>
+              <div className='product-warranty-data'>
+                <TbTruckDelivery className='warranty-icon' />
                 <p>Free Delivery</p>
               </div>
-              <div className="product-warranty-data">
-                <TbReplace className="warranty-icon" />
+              <div className='product-warranty-data'>
+                <TbReplace className='warranty-icon' />
                 <p>30 days replacement</p>
               </div>
-              <div className="product-warranty-data">
-                <MdSecurity className="warranty-icon" />
+              <div className='product-warranty-data'>
+                <MdSecurity className='warranty-icon' />
                 <p>1 year warranty</p>
               </div>
             </div>
-            <div className="product-data-info">
+            <div className='product-data-info'>
               <p>
                 Available:
-                <span>{stock > 0 ? "in stock" : "out of stock"}</span>
+                <span>{stock > 0 ? 'in stock' : 'out of stock'}</span>
               </p>
               <p>
                 Brand:
