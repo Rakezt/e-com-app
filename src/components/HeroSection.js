@@ -1,34 +1,35 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { Button } from "../styles/Button";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { Button } from '../styles/Button';
 
 const HeroSection = ({ myData }) => {
   const { name } = myData;
   return (
     <Wrapper>
-      <div className="container">
-        <div className="grid grid-two-column">
-          <div className="hero-section-data">
-            <p className="intro-data">Welcome to</p>
-            <h1>{name}</h1>
+      <div className='container'>
+        <div className='grid grid-two-column'>
+          <div className='hero-section-data'>
+            <p className='intro-data'>Welcome to</p>
+            <h2>{name}</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              luctus est quis gravida dictum. Pellentesque luctus erat ut sem
-              vehicula hendrerit et at odio. Donec vitae neque in ex convallis
-              luctus. Integer suscipit nisi ac nibh maximus aliquam.
+              Tear up the streets with YourSweetNightmare Skate Store — built
+              for the outcasts, the misfits, and the ones who ride against the
+              grain. Our decks don’t just roll; they riot. From cracked pavement
+              to midnight sessions, we keep your wheels screaming and your grip
+              locked. No rules. No limits. Just pure chaos on four wheels.
             </p>
 
-            <NavLink to="/products">
+            <NavLink to='/products'>
               <Button>Shop Now</Button>
             </NavLink>
           </div>
-          <div className="hero-section-image">
+          <div className='hero-section-image'>
             <figure>
               <img
-                src="/images/hero.jpg"
-                alt="hero-section"
-                className="img-style"
+                src='/images/hero.jpg'
+                alt='hero-section'
+                className='img-style'
               />
             </figure>
           </div>
@@ -50,9 +51,14 @@ const Wrapper = styled.section`
       margin: 2rem 0;
     }
 
-    h1 {
-      text-transform: capitalize;
-      font-weight: bold;
+    h2 {
+      font-family: 'Fontdiner Swanky', serif;
+      font-weight: 400;
+      font-size: 4.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #000;
+      text-shadow: 2px 2px rgb(235, 143, 52);
     }
 
     .intro-data {
@@ -75,7 +81,7 @@ const Wrapper = styled.section`
     box-radius: 0.5rem;
 
     &::after {
-      content: "";
+      content: '';
       width: 60%;
       height: 80%;
       position: absolute;
@@ -95,7 +101,7 @@ const Wrapper = styled.section`
     }
 
     figure::after {
-      content: "";
+      content: '';
       width: 50%;
       height: 100%;
       left: 0;
