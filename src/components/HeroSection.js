@@ -45,7 +45,7 @@ const Wrapper = styled.section`
   img {
     width: 90%;
     max-width: 500px;
-    height: 10rem;
+    height: auto;
     border-radius: 10px;
     object-fit: cover;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
@@ -60,7 +60,7 @@ const Wrapper = styled.section`
       font-family: 'New Rocker', system-ui;
       font-weight: 400;
       font-style: normal;
-      font-size: 4.5rem;
+      font-size: clamp(2rem, 6vw, 4.5rem);
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #000;
@@ -107,8 +107,31 @@ const Wrapper = styled.section`
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    .grid {
-      gap: 10rem;
+    padding: 6rem 0;
+
+    .grid-two-column {
+      grid-template-columns: 1fr !important;
+      gap: 6rem;
+    }
+
+    .hero-section-data {
+      text-align: center;
+
+      h2 {
+        text-align: center;
+      }
+
+      .intro-data {
+        font-size: 2.2rem;
+      }
+
+      .title-design {
+        font-size: 1.8rem;
+      }
+    }
+
+    .hero-section-image {
+      margin-top: 2rem;
     }
 
     figure::after {
@@ -117,7 +140,6 @@ const Wrapper = styled.section`
       height: 100%;
       left: 0;
       top: 10%;
-      /* bottom: 10%; */
       background-color: rgba(81, 56, 238, 0.4);
     }
   }
