@@ -2,9 +2,32 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../styles/Button';
+import Slider from 'react-slick';
 
 const HeroSection = ({ myData }) => {
   const { name } = myData;
+
+  const images = [
+    '/images/hero.jpg',
+    '/images/board1.jpg',
+    '/images/board2.jpg',
+    '/images/board3.jpg',
+    '/images/board4.jpg',
+    '/images/board5.jpg',
+    '/images/board6.jpg',
+  ];
+
+  const settings = {
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 800,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    fade: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <Wrapper>
       <div className='container'>
@@ -26,13 +49,13 @@ const HeroSection = ({ myData }) => {
             </NavLink>
           </div>
           <div className='hero-section-image'>
-            <figure>
-              <img
-                src='/images/hero.jpg'
-                alt='hero-section'
-                className='img-style'
-              />
-            </figure>
+            <Slider {...settings} className='slider'>
+              {images.map((img, index) => (
+                <div key={index}>
+                  <img src={img} alt={`slide-${index}`} className='img-style' />
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
       </div>
@@ -40,7 +63,19 @@ const HeroSection = ({ myData }) => {
   );
 };
 const Wrapper = styled.section`
-  padding: 12rem 0;
+  padding: 8rem 0;
+
+  .slider {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .slider img {
+    width: 80%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 
   img {
     width: 90%;
@@ -63,7 +98,6 @@ const Wrapper = styled.section`
       font-size: clamp(2rem, 6vw, 4.5rem);
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #000;
       text-shadow: 2px 2px rgb(235, 143, 52);
       text-decoration: underline;
     }
@@ -75,7 +109,6 @@ const Wrapper = styled.section`
       font-size: 3rem;
     }
     .title-design {
-      color: #000;
       font-size: 2rem;
     }
   }
@@ -107,31 +140,48 @@ const Wrapper = styled.section`
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    padding: 6rem 0;
+    padding: 4rem 0;
 
-    .grid-two-column {
-      grid-template-columns: 1fr !important;
-      gap: 6rem;
+    .container {
+      width: 100%;
+      max-width: 100%;
+      padding: 0 1rem;
+      overflow: visible !important;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
     }
 
     .hero-section-data {
       text-align: center;
 
       h2 {
-        text-align: center;
-      }
-
-      .intro-data {
-        font-size: 2.2rem;
-      }
-
-      .title-design {
-        font-size: 1.8rem;
+        font-size: clamp(2rem, 6vw, 3rem);
+        word-wrap: break-word;
       }
     }
 
+    .slider {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden;
+    }
+
+    .slider img {
+      width: 100% !important;
+      height: 220px !important;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
     .hero-section-image {
-      margin-top: 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     figure::after {

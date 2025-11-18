@@ -1,21 +1,22 @@
-import React from "react";
-import { useProductContext } from "../context/productContext";
-import styled from "styled-components";
-import Product from "../Product";
+import React from 'react';
+import { useProductContext } from '../context/productContext';
+import styled from 'styled-components';
+import Product from '../Product';
 
 const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductContext();
+  console.log('featureProducts', featureProducts);
 
   if (isLoading) {
     return <div>.....Loading</div>;
   }
 
   return (
-    <Wrapper className="section">
-      <div className="container">
-        <div className="intro-data">Check Now!</div>
-        <div className="common-heading">Our Feature Products</div>
-        <div className="grid grid-three-column">
+    <Wrapper className='section'>
+      <div className='container'>
+        <div className='intro-data'>Check Now!</div>
+        <div className='common-heading'>Our Feature Products</div>
+        <div className='grid grid-three-column'>
           {featureProducts.map((item) => {
             return <Product key={item.id} {...item} />;
           })}
@@ -48,7 +49,7 @@ const Wrapper = styled.section`
     overflow: hidden;
     transition: all 0.5s linear;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
