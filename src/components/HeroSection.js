@@ -56,7 +56,7 @@ const HeroSection = ({ myData }) => {
         </Slider>
       </div>
 
-      <div className='overlay'></div>
+      <div className='overlay'> </div>
     </Wrapper>
   );
 };
