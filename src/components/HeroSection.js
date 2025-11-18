@@ -135,12 +135,7 @@ const Wrapper = styled.section`
     }
 
     figure::after {
-      content: '';
-      width: 50%;
-      height: 100%;
-      left: 0;
-      top: 10%;
-      background-color: rgba(81, 56, 238, 0.4);
+      content: none;
     }
   }
 `;
