@@ -122,13 +122,14 @@ const Wrapper = styled.section`
   .subtitle {
     font-size: 2rem;
     margin: 1rem 0 2rem;
+    color: grey;
     font-weight: 700;
     letter-spacing: 1px;
   }
 
   .description {
     max-width: 500px;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
     color: #e4e4e4;
   }
@@ -169,7 +170,7 @@ const Wrapper = styled.section`
     }
 
     .subtitle {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
 
     img {
