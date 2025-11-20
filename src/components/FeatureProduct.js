@@ -1,133 +1,98 @@
-import React from 'react';
 import { useProductContext } from '../context/productContext';
 import styled from 'styled-components';
-import Product from '../Product';
 
 const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductContext();
-  console.log('featureProducts', featureProducts);
 
   if (isLoading) {
-    return <div>.....Loading</div>;
+    return <div>Loading...</div>;
   }
 
   return (
-    <Wrapper className='section'>
+    <Wrapper>
       <div className='container'>
-        <div className='intro-data'>Check Now!</div>
-        <div className='common-heading'>Our Feature Products</div>
-        <div className='grid grid-three-column'>
-          {featureProducts.map((item) => {
-            return <Product key={item.id} {...item} />;
-          })}
+        <h2 className='title'>CHECK NOW!</h2>
+        <h3 className='subtitle'>Our Featured Categories</h3>
+
+        <div className='vans-grid'>
+          {featureProducts.map((item) => (
+            <div className='vans-card' key={item.id}>
+              <img src={item.image} alt={item.name} />
+
+              <div className='vans-label'>{item.category}</div>
+            </div>
+          ))}
         </div>
       </div>
     </Wrapper>
   );
 };
+
 const Wrapper = styled.section`
-  padding: 9rem 0;
+  padding: 8rem 0;
   background-color: ${({ theme }) => theme.colors.bg};
 
-  .container {
-    max-width: 120rem;
-  }
-
-  .intro-data {
-    margin-bottom: 0;
+  .title {
     color: rgb(235, 143, 52);
-    font-weight: bold;
+    font-weight: 700;
     font-size: 3rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
   }
 
-  figure {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .subtitle {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 3rem;
+  }
+
+  /* ---- Vans Style Grid ---- */
+  .vans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .vans-card {
     position: relative;
     overflow: hidden;
-    transition: all 0.5s linear;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      transition: all 0.2s linear;
-      cursor: pointer;
-    }
-    &:hover::after {
-      width: 100%;
-    }
-    &:hover img {
-      transform: scale(1.2);
-    }
-    img {
-      max-width: 90%;
-      margin-top: 1.5rem;
-      height: 20rem;
-      transition: all 0.2s linear;
-    }
-
-    .caption {
-      position: absolute;
-      top: 15%;
-      right: 10%;
-      text-transform: uppercase;
-      background-color: ${({ theme }) => theme.colors.bg};
-      color: ${({ theme }) => theme.colors.helper};
-      padding: 0.8rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 2rem;
-    }
+    cursor: pointer;
   }
 
-  .card {
-    background-color: #fff;
-    border-radius: 1rem;
+  .vans-card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
 
-    .card-data {
-      padding: 0 2rem;
+  .vans-card:hover img {
+    transform: scale(1.08);
+  }
+
+  .vans-label {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    color: white;
+    font-size: 2.3rem;
+    font-weight: 700;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+  }
+
+  /* ---- Mobile Responsive ---- */
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    .vans-grid {
+      grid-template-columns: 1fr;
     }
 
-    .card-data-flex {
-      margin: 2rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .vans-card img {
+      height: 300px;
     }
 
-    h3 {
-      color: ${({ theme }) => theme.colors.text};
-      text-transform: capitalize;
-    }
-
-    .card-data--price {
-      color: ${({ theme }) => theme.colors.helper};
-    }
-
-    .btn {
-      margin: 2rem auto;
-      background-color: rgb(0 0 0 / 0%);
-      border: 0.1rem solid rgb(98 84 243);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:hover {
-        background-color: rgb(98 84 243);
-      }
-
-      &:hover a {
-        color: #fff;
-      }
-      a {
-        color: rgb(98 84 243);
-        font-size: 1.4rem;
-      }
+    .vans-label {
+      font-size: 1.8rem;
     }
   }
 `;

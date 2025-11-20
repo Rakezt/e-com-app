@@ -1,102 +1,104 @@
-import React from "react";
-import styled from "styled-components";
-import { TbTruckDelivery } from "react-icons/tb";
-import { MdSecurity } from "react-icons/md";
-import { GiReceiveMoney } from "react-icons/gi";
-import { RiSecurePaymentFill } from "react-icons/ri";
+import React from 'react';
+import styled from 'styled-components';
+import { TbTruckDelivery } from 'react-icons/tb';
+import { MdSecurity } from 'react-icons/md';
+import { GiReceiveMoney } from 'react-icons/gi';
+import { RiSecurePaymentFill } from 'react-icons/ri';
 
 const Services = () => {
+  const serviceData = [
+    {
+      icon: <TbTruckDelivery />,
+      title: 'Super Fast & Free Delivery',
+    },
+    {
+      icon: <MdSecurity />,
+      title: 'Non-Contact Secure Delivery',
+    },
+    {
+      icon: <GiReceiveMoney />,
+      title: 'Money-Back Guaranteed',
+    },
+    {
+      icon: <RiSecurePaymentFill />,
+      title: 'Secure Payment System',
+    },
+  ];
+
   return (
     <Wrapper>
-      <div className="container">
-        <div className="grid grid-three-column">
-          <div className="services-1">
-            <div>
-              <TbTruckDelivery className="icon" />
-              <h3>Super Fast and Free Delivery</h3>
+      <div className='container'>
+        <h2 className='section-title'>Why Shop With Us?</h2>
+
+        <div className='services-grid'>
+          {serviceData.map((item, i) => (
+            <div className='service-card' key={i}>
+              <div className='service-icon'>{item.icon}</div>
+              <h3>{item.title}</h3>
             </div>
-          </div>
-          <div className="services-2">
-            <div className="services-column-2">
-              <MdSecurity className="icon" />
-              <h3>Non-Contact Delivery</h3>
-            </div>
-            <div className="services-column-2">
-              <GiReceiveMoney className="icon" />
-              <h3>Super Fast and Free Delivery</h3>
-            </div>
-          </div>
-          <div className="services-3">
-            <div>
-              <RiSecurePaymentFill className="icon" />
-              <h3>Super Secure Payment System</h3>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </Wrapper>
   );
 };
+
 const Wrapper = styled.section`
-  padding: 9rem 0;
+  padding: 8rem 0;
+  background: ${({ theme }) => theme.colors.bg};
 
-  .grid {
-    gap: 4.8rem;
-  }
-
-  .services-1,
-  .services-2,
-  .services-3 {
-    width: auto;
-    height: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    background: ${({ theme }) => theme.colors.bg};
+  .section-title {
+    font-size: 3.5rem;
+    font-weight: 800;
     text-align: center;
-    border-radius: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 2px;
+    margin-bottom: 4rem;
   }
 
-  .services-2 {
-    gap: 4rem;
-    background-color: transparent;
-    box-shadow: none;
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
 
-    .services-column-2 {
-      display: flex;
-      background: ${({ theme }) => theme.colors.bg};
-      flex-direction: row;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2rem;
-      box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-      }
+    @media (max-width: ${({ theme }) => theme.media.mobile}) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
   }
 
-  h3 {
-    margin-top: 1.4rem;
-    font-size: 2rem;
+  .service-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 1.6rem;
+    padding: 3.5rem 2rem;
+    text-align: center;
+    box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.05);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.12);
+    }
   }
 
-  .icon {
-    /* font-size: rem; */
-    width: 8rem;
-    height: 8rem;
-    padding: 2rem;
-    border-radius: 50%;
-    background-color: #fff;
+  .service-icon {
+    width: 90px;
+    height: 90px;
+    background: #fff;
     color: rgb(235, 143, 52);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    margin: 0 auto 1.4rem auto;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
   }
 `;
 

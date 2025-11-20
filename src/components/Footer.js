@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button } from '../styles/Button';
 import { NavLink } from 'react-router-dom';
 import { FaLinkedin, FaDiscord, FaTwitter } from 'react-icons/fa';
+import FooterCollapse from '../Helper/FooterCollapse';
 
 const Footer = () => {
   return (
@@ -27,8 +28,8 @@ const Footer = () => {
           <div className='footer-about'>
             <h3>YourSweetNightmare</h3>
             <p>
-              Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-              consectetur, adipisci velit...
+              Designed for riders who don’t wait for permission. No rules. No
+              limits. Just pure street-born chaos carved into every deck.
             </p>
           </div>
           <div className='footer-subscribe'>
@@ -68,11 +69,36 @@ const Footer = () => {
               @{new Date().getFullYear()} YourSweetNightmare. All right reserved
             </p>
 
-            <div className='last'>
-              <p>Privacy Policy</p>
-              <NavLink to='/t&c'>
-                <p>Terms & Conditions</p>
-              </NavLink>
+            <div className='footer-collapsible'>
+              <FooterCollapse
+                title='Legal'
+                links={[
+                  {
+                    href: '/s&r&c',
+                    label: 'Sustainability and Responsibility',
+                  },
+                  { href: '/mss', label: 'Modern Slavery Statement' },
+                  { href: '/pi', label: 'Payment Info' },
+                ]}
+              />
+
+              <FooterCollapse
+                title='Policies'
+                links={[
+                  { href: '/pp', label: 'Privacy Policy' },
+                  { href: '/t&u', label: 'Terms of Use' },
+                  { href: '/t&c', label: 'Terms & Conditions of Sale' },
+                ]}
+              />
+
+              <FooterCollapse
+                title='Cookies'
+                links={[
+                  { href: '/dc', label: 'Declaration of Conformity' },
+                  { href: '/cp', label: 'Cookie Policy' },
+                  { href: '/cp', label: 'Cookie Preferences' },
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -148,6 +174,12 @@ const Wrapper = styled.section`
       padding-left: 10rem;
     }
   }
+  .footer-collapsible {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 2rem;
+  }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     .contact-short {
@@ -170,6 +202,9 @@ const Wrapper = styled.section`
       .last {
         padding-left: 0rem;
       }
+    }
+    .footer-collapsible {
+      padding-left: 0;
     }
   }
 `;
