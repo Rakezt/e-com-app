@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { Button } from "../styles/Button";
-import { NavLink } from "react-router-dom";
-import { FaLinkedin, FaDiscord, FaTwitter } from "react-icons/fa";
+import React from 'react';
+import styled from 'styled-components';
+import { Button } from '../styles/Button';
+import { NavLink } from 'react-router-dom';
+import { FaLinkedin, FaDiscord, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <Wrapper>
-      <section className="contact-short">
-        <div className="grid grid-two-column">
+      <section className='contact-short'>
+        <div className='grid grid-two-column'>
           <div>
             <h3>Ready to get started</h3>
             <br />
@@ -16,61 +16,63 @@ const Footer = () => {
           </div>
           <div>
             <Button>
-              <NavLink to="/contact">Get Started</NavLink>
+              <NavLink to='/contact'>Get Started</NavLink>
             </Button>
           </div>
         </div>
       </section>
 
       <footer>
-        <div className="container grid grid-four-column">
-          <div className="footer-about">
+        <div className='container grid grid-four-column'>
+          <div className='footer-about'>
             <h3>YourSweetNightmare</h3>
             <p>
               Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
               consectetur, adipisci velit...
             </p>
           </div>
-          <div className="footer-subscribe">
+          <div className='footer-subscribe'>
             <h3>Subcribe to us</h3>
-            <form action="#">
-              <input type="email" placeholder="email" />
-              <input type="submit" value="subscribe" className="btn" />
+            <form action='#'>
+              <input type='email' placeholder='email' className='email' />
+              <input type='submit' value='subscribe' className='btn' />
             </form>
           </div>
-          <div className="footer-social">
+          <div className='footer-social'>
             <h3>Connect with us</h3>
-            <div className="footer-social--icons">
+            <div className='footer-social--icons'>
               <div>
-                <FaDiscord className="icons" />
+                <FaDiscord className='icons' />
               </div>
               <div>
-                <FaTwitter className="icons" />
+                <FaTwitter className='icons' />
               </div>
               <div>
-                <FaLinkedin className="icons" />
+                <FaLinkedin className='icons' />
               </div>
             </div>
           </div>
-          <div className="footer-contact">
+          <div className='footer-contact'>
             <div>
               <h3>Call us</h3>
-              <a href="tel: 12345678">
-                <h3>+91 12345678</h3>
+              <a href='tel: 12345678'>
+                <h3>+91 1234567890</h3>
               </a>
             </div>
           </div>
         </div>
-        <div className="footer-bottom--section">
+        <div className='footer-bottom--section'>
           <hr />
-          <div className="container grid grid-two-column">
+          <div className='container grid grid-two-column'>
             <p>
               @{new Date().getFullYear()} YourSweetNightmare. All right reserved
             </p>
 
-            <div className="last">
+            <div className='last'>
               <p>Privacy Policy</p>
-              <p>Terms & Conditions</p>
+              <NavLink to='/t&c'>
+                <p>Terms & Conditions</p>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -107,6 +109,9 @@ const Wrapper = styled.section`
     }
     p {
       color: ${({ theme }) => theme.colors.white};
+    }
+    .email {
+      border-radius: 1rem;
     }
     .btn {
       background-color: rgb(235, 143, 52);

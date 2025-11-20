@@ -17,9 +17,21 @@ const HeroSection = ({ myData }) => {
     '/images/board6.jpg',
   ];
 
+  const PrevArrow = ({ onClick }) => (
+    <button className='arrow-btn left' onClick={onClick}>
+      ❮
+    </button>
+  );
+
+  const NextArrow = ({ onClick }) => (
+    <button className='arrow-btn right' onClick={onClick}>
+      ❯
+    </button>
+  );
+
   const settings = {
     dots: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 800,
     autoplay: true,
@@ -27,6 +39,8 @@ const HeroSection = ({ myData }) => {
     fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (
@@ -150,8 +164,45 @@ const Wrapper = styled.section`
       transform: scale(1.05);
     }
   }
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: white;
+    border: none;
+    color: #111;
+    font-size: 3rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-  /* 📱 Mobile Styling */
+  /* Fade-in on hover */
+  .hero-slider:hover .arrow-btn {
+    opacity: 1;
+  }
+
+  /* Hover scale */
+  .arrow-btn:hover {
+    transform: translateY(-50%) scale(1.12);
+    background: rgba(255, 159, 67, 0.8);
+  }
+
+  .arrow-btn.left {
+    left: 20px;
+  }
+
+  .arrow-btn.right {
+    right: 20px;
+  }
+
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     height: 100vh;
 
@@ -175,6 +226,20 @@ const Wrapper = styled.section`
 
     img {
       filter: brightness(50%);
+    }
+    .arrow-btn {
+      font-size: 2rem;
+      width: 40px;
+      height: 40px;
+      opacity: 0.8;
+    }
+
+    .arrow-btn.left {
+      left: 10px;
+    }
+
+    .arrow-btn.right {
+      right: 10px;
     }
   }
 `;
