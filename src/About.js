@@ -165,7 +165,7 @@ const Wrapper = styled.section`
 
   .content {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     padding: 5rem;
     max-width: 800px;
     color: white;
