@@ -1,8 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const Contact = () => {
   const { isAuthenticated, user } = useAuth0();
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   return (
     <Wrapper>
@@ -15,17 +17,20 @@ const Contact = () => {
         </p>
       </header>
 
-      {/* MAP */}
+      {/* MAP WITH SKELETON */}
       <div className='map-wrapper'>
+        {!mapLoaded && <div className='map-skeleton' />}
+
         <iframe
           src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.433897574961!2d77.58611107321174!3d13.071664712680306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1925ed3bc12f%3A0x7b731ab2850d5f8b!2sPhoenix%20Mall%20Of%20Asia!5e0!3m2!1sen!2sin!4v1704925403473!5m2!1sen!2sin'
-          allowFullScreen=''
           loading='lazy'
           title='Google Maps'
+          onLoad={() => setMapLoaded(true)}
+          style={{ opacity: mapLoaded ? 1 : 0 }}
         ></iframe>
       </div>
 
-      {/* FORM + DETAILS */}
+      {/* CONTACT GRID */}
       <section className='contact-section container'>
         {/* LEFT SIDE INFO */}
         <div className='contact-info'>
@@ -75,8 +80,8 @@ const Contact = () => {
           <textarea
             placeholder='Write your message...'
             name='message'
-            required
             rows='8'
+            required
           ></textarea>
 
           <button type='submit' className='submit-btn'>
@@ -87,6 +92,7 @@ const Contact = () => {
     </Wrapper>
   );
 };
+
 const Wrapper = styled.section`
   padding-top: 5rem;
 
@@ -109,12 +115,13 @@ const Wrapper = styled.section`
     }
   }
 
-  /* MAP */
+  /* MAP WRAPPER */
   .map-wrapper {
     width: 100%;
     max-width: 1200px;
     height: 400px;
     margin: 3rem auto;
+    position: relative;
     border-radius: 1.2rem;
     overflow: hidden;
     box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.12);
@@ -123,10 +130,28 @@ const Wrapper = styled.section`
       width: 100%;
       height: 100%;
       border: none;
+      transition: opacity 0.4s ease-in-out;
     }
   }
 
-  /* CONTACT SECTION */
+  /* SKELETON LOADER */
+  .map-skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #f0f0f0 0%, #e2e2e2 50%, #f0f0f0 100%);
+    animation: shimmer 1.6s infinite linear;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* CONTACT SECTION GRID */
   .contact-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -141,6 +166,7 @@ const Wrapper = styled.section`
     }
   }
 
+  /* INFO LEFT SIDE */
   .contact-info {
     padding: 2rem;
 
@@ -167,7 +193,7 @@ const Wrapper = styled.section`
     }
   }
 
-  /* FORM */
+  /* FORM RIGHT SIDE */
   .contact-form {
     background: white;
     padding: 3rem 4rem;

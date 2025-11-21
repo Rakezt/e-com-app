@@ -1,94 +1,94 @@
-import React from "react";
-import styled from "styled-components";
-import { BsFillGridFill, BsList } from "react-icons/bs";
-import { useFilterContext } from "../context/filterContext";
+// components/Sort.jsx
+import React from 'react';
+import styled from 'styled-components';
+import { useFilterContext } from '../context/filterContext';
 
 const Sort = () => {
-  const { grid_View, setGridView, setListView, filter_Products, sorting } =
+  const { setGridView, setListView, grid_View, filter_Products, sorting } =
     useFilterContext();
+
   return (
-    <Wrapper className="sort-section">
-      <div className="sorting-list--grid">
-        <button
-          className={grid_View ? "active sort-btn" : "sort-btn"}
-          onClick={setGridView}
-        >
-          <BsFillGridFill className="icon" />
-        </button>
-        <button
-          className={grid_View ? "sort-btn" : "active sort-btn"}
-          onClick={setListView}
-        >
-          <BsList className="icon" />
-        </button>
+    <Wrapper className='sort-bar'>
+      <div className='left'>
+        <div className='view-toggle'>
+          <button
+            className={grid_View ? 'pill active' : 'pill'}
+            onClick={setGridView}
+          >
+            Grid
+          </button>
+          <button
+            className={!grid_View ? 'pill active' : 'pill'}
+            onClick={setListView}
+          >
+            List
+          </button>
+        </div>
+
+        <div className='count'>
+          {filter_Products.length}{' '}
+          {filter_Products.length === 1 ? 'Product' : 'Products'}
+        </div>
       </div>
 
-      <div className="product-data">
-        {" "}
-        <p>
-          {filter_Products.length}{" "}
-          {filter_Products.length > 1 ? "Products" : "Product"} Available
-        </p>
-      </div>
-      <div className="sort-selection">
-        <form action="#">
-          <label htmlFor="sort"></label>
-          <select
-            name="sort"
-            id="sort"
-            className="sort-selection-style"
-            onClick={sorting}
-          >
-            <option value="lowest">Price(lowest)</option>
-            <option value="highest">Price(highest)</option>
-            <option value="a-z">Sort(a-z)</option>
-            <option value="z-a">Sort(z-a)</option>
-          </select>
-        </form>
+      <div className='right'>
+        <select name='sort' onChange={sorting} className='sort-select'>
+          <option value='lowest'>Price (Lowest)</option>
+          <option value='highest'>Price (Highest)</option>
+          <option value='a-z'>Name (A - Z)</option>
+          <option value='z-a'>Name (Z - A)</option>
+        </select>
       </div>
     </Wrapper>
   );
 };
+
 const Wrapper = styled.section`
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin-top: 12rem;
-  padding: 3rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
+  margin-bottom: 2.4rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(12, 12, 12, 0.04);
 
-  .sorting-list--grid {
+  .left {
     display: flex;
-    gap: 2rem;
-
-    .sort-btn {
-      padding: 1rem 1rem;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .icon {
-      font-size: 1.6rem;
-    }
-    .active {
-      background-color: rgb(235, 143, 52);
-      color: #fff;
-    }
+    gap: 1.2rem;
+    align-items: center;
+  }
+  .view-toggle {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .pill {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.14s;
+  }
+  .pill.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+  .count {
+    color: #666;
+    font-size: 0.95rem;
+    margin-left: 0.6rem;
   }
 
-  .sort-selection .sort-selection--style {
-    padding: 0.5rem;
-    cursor: pointer;
-
-    .sort-select--option {
-      padding: 0.5rem 0;
-      cursor: pointer;
-      height: 2rem;
-      padding: 10px;
-    }
+  .sort-select {
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid #eee;
+    background: white;
+    font-size: 0.95rem;
   }
 `;
 export default Sort;

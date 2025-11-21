@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button } from '../styles/Button';
 import { NavLink } from 'react-router-dom';
 import { FaLinkedin, FaDiscord, FaTwitter } from 'react-icons/fa';
-import FooterCollapse from '../Helper/FooterCollapse';
+import FooterHoverMenu from '../Helper/FooterHoverMenu';
 
 const Footer = () => {
   return (
@@ -69,8 +69,8 @@ const Footer = () => {
               @{new Date().getFullYear()} YourSweetNightmare. All right reserved
             </p>
 
-            <div className='footer-collapsible'>
-              <FooterCollapse
+            <div className='hover-sections'>
+              <FooterHoverMenu
                 title='Legal'
                 links={[
                   {
@@ -82,7 +82,7 @@ const Footer = () => {
                 ]}
               />
 
-              <FooterCollapse
+              <FooterHoverMenu
                 title='Policies'
                 links={[
                   { href: '/pp', label: 'Privacy Policy' },
@@ -91,7 +91,7 @@ const Footer = () => {
                 ]}
               />
 
-              <FooterCollapse
+              <FooterHoverMenu
                 title='Cookies'
                 links={[
                   { href: '/dc', label: 'Declaration of Conformity' },
@@ -138,6 +138,7 @@ const Wrapper = styled.section`
     }
     .email {
       border-radius: 1rem;
+      margin-bottom: 1rem;
     }
     .btn {
       background-color: rgb(235, 143, 52);
@@ -174,11 +175,11 @@ const Wrapper = styled.section`
       padding-left: 10rem;
     }
   }
-  .footer-collapsible {
+  .hover-sections {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-left: 2rem;
+    flex-direction: row;
+    gap: 10rem;
+    position: relative;
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
@@ -203,8 +204,8 @@ const Wrapper = styled.section`
         padding-left: 0rem;
       }
     }
-    .footer-collapsible {
-      padding-left: 0;
+    .hover-sections {
+      display: none;
     }
   }
 `;

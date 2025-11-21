@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import styled from "styled-components";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import styled from 'styled-components';
 
-const MyImages = ({ image = [{ url: "" }] }) => {
+const MyImages = ({ image = [{ url: '' }] }) => {
   const [mainImage, setMainImage] = useState(image[0]);
 
   useEffect(() => {
@@ -13,14 +13,14 @@ const MyImages = ({ image = [{ url: "" }] }) => {
 
   return (
     <Wrapper>
-      <div className="grid grid-four-column">
+      <div className='grid grid-four-column'>
         {image.map((item, index) => {
           return (
             <figure>
               <img
                 src={item.url}
                 alt={item.filename}
-                className="box-image--style"
+                className='box-image--style'
                 key={index}
                 onClick={() => setMainImage(item)}
               />
@@ -28,7 +28,7 @@ const MyImages = ({ image = [{ url: "" }] }) => {
           );
         })}
       </div>
-      <div className="main-screen">
+      <div className='main-screen'>
         <img src={mainImage.url} alt={mainImage.filename} />
       </div>
     </Wrapper>
