@@ -55,34 +55,34 @@ body::-webkit-scrollbar-thumb:hover {
 
 h1, h2, h3, h4 {
   font-family: "Work Sans", sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.heading};
-  letter-spacing: -0.5px; /* modern tight spacing */
 }
 
 h1 {
-  font-size: 6rem;
-  line-height: 1.1;
+  font-size: 3.6rem;     
+  line-height: 1.25;
   text-transform: uppercase;
+  letter-spacing: -0.5px;
 }
-
 h2 {
-  font-size: 4rem;
-  line-height: 1.2;
+  font-size: 2.8rem;     
+  line-height: 1.3;
   font-weight: 700;
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;    
   font-weight: 600;
 }
 
+
 p {
-  font-size: 1.7rem;
-  color: ${({ theme }) => theme.colors.text};
+  font-size: 1.55rem;    
+  line-height: 1.55;
   font-weight: 400;
-  line-height: 1.65;
-  max-width: 70ch;
+  color: ${({ theme }) => theme.colors.text};
+  max-width: 65ch;
 }
 
 a {
@@ -202,8 +202,10 @@ input[type="submit"]:hover {
     font-size: 50%;
   }
 
-  h1 { font-size: 4.8rem; }
-  h2 { font-size: 3rem; }
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2.2rem; }
+  h3 { font-size: 1.7rem; }
+  p  { font-size: 1.45rem; }
 
   .grid-two-column,
   .grid-three-column,
