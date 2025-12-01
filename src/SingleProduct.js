@@ -34,7 +34,7 @@ const SingleProduct = () => {
   }, [id, getSingleProduct]);
 
   if (isSingleLoading) {
-    <p>Loading.........</p>;
+    return <p>Loading.........</p>;
   }
 
   return (
@@ -50,11 +50,11 @@ const SingleProduct = () => {
             <p className='product-data-price'>
               MRP:
               <del>
-                <FormatPrice price={price + 250000} />
+                <FormatPrice price={price} />
               </del>
             </p>
             <p className='product-data-price product-data-real-price'>
-              Deal of the Day: <FormatPrice price={price} />
+              Deal of the Day: <FormatPrice price={price - price * 0.2} />
             </p>
             <p>{description}</p>
             <div className='product-data-warranty'>
