@@ -32,6 +32,9 @@ const SingleProduct = () => {
   useEffect(() => {
     getSingleProduct(`${API}/${id}`);
   }, [id, getSingleProduct]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (isSingleLoading) {
     return <p>Loading.........</p>;

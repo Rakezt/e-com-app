@@ -14,7 +14,7 @@ const MyImages = ({ image = [{ url: '' }] }) => {
   return (
     <Wrapper>
       <div className='grid grid-four-column'>
-        {image.map((item, index) => {
+        {/* {image.map((item, index) => {
           return (
             <figure>
               <img
@@ -26,7 +26,7 @@ const MyImages = ({ image = [{ url: '' }] }) => {
               />
             </figure>
           );
-        })}
+        })} */}
       </div>
       <div className='main-screen'>
         <img src={mainImage.url} alt={mainImage.filename} />
