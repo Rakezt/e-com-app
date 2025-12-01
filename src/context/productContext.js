@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from '../reducer/productsReducer';
 
 const AppContext = createContext();
-const API = 'https://e-com-app-be.onrender.com';
+const API = 'https://e-com-app-be.onrender.com/api/products';
 
 const initialState = {
   isLoading: false,

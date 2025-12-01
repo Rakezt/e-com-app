@@ -10,7 +10,7 @@ import { MdSecurity } from 'react-icons/md';
 import Stars from './components/Stars';
 import AddToCart from './components/AddToCart';
 
-const API = 'https://e-com-app-be.onrender.com';
+const API = 'https://e-com-app-be.onrender.com/api/products';
 
 const SingleProduct = () => {
   const { id } = useParams();
