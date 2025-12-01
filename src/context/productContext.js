@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
 import reducer from '../reducer/productsReducer';
 
 const AppContext = createContext();
@@ -27,16 +33,18 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const getSingleProduct = async (url) => {
+  const getSingleProduct = useCallback(async (url) => {
     dispatch({ type: 'SET_SINGLE_LOADING' });
     try {
       const response = await axios.get(url);
-      const singleProduct = await response.data;
-      dispatch({ type: 'SET_SINGLE_DATA', payload: singleProduct });
+      dispatch({
+        type: 'SET_SINGLE_DATA',
+        payload: response.data,
+      });
     } catch (error) {
       dispatch({ type: 'SET_ERROR' });
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData(API);

@@ -31,7 +31,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getSingleProduct(`${API}/${id}`);
-  }, [id]);
+  }, [id, getSingleProduct]);
 
   if (isSingleLoading) {
     <p>Loading.........</p>;
