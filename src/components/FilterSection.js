@@ -6,7 +6,7 @@ import { useFilterContext } from '../context/filterContext';
 
 const FilterSection = () => {
   const {
-    filters: { text, category, color, price, minPrice, maxPrice },
+    filters: { text, category, company, color, price, minPrice, maxPrice },
     all_Products,
     updateFilterValue,
     clearFilters,
@@ -36,29 +36,18 @@ const FilterSection = () => {
 
       <div className='section'>
         <h4>Category</h4>
-        <div className='list'>
-          {categories.map((c, i) => (
-            <button
-              key={i}
-              type='button'
-              name='category'
-              value={c}
-              className={c === category ? 'chip active' : 'chip'}
-              onClick={updateFilterValue}
-            >
-              {c}
-            </button>
+        <select name='category' value={category} onChange={updateFilterValue}>
+          {categories.map((comp, i) => (
+            <option key={i} value={comp}>
+              {comp}
+            </option>
           ))}
-        </div>
+        </select>
       </div>
 
       <div className='section'>
         <h4>Brand</h4>
-        <select
-          name='company'
-          onChange={updateFilterValue}
-          value={companies.includes('') ? companies[0] : companies[0]}
-        >
+        <select name='company' onChange={updateFilterValue} value={company}>
           {companies.map((comp, i) => (
             <option key={i} value={comp}>
               {comp}
