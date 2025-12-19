@@ -13,6 +13,8 @@ import { ThemeProvider } from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Order from './components/Order';
+import Login from './Login';
+import AuthDrawer from './components/AuthDrawer';
 
 const App = () => {
   const theme = {
@@ -43,8 +45,10 @@ const App = () => {
       <BrowserRouter>
         <GlobalStyle />
         <Header />
+        <AuthDrawer />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/about' element={<About />} />
           <Route path='/products' element={<Products />} />
           <Route path='/contact' element={<Contact />} />

@@ -10,10 +10,11 @@ const ListView = ({ products }) => {
     <Wrapper>
       {products.map((p) => {
         const { id, name, image, price, description } = p;
+        const imgURL = `${image[0]?.url}?f_auto&q_auto`;
         return (
           <article className='list-card' key={id}>
             <figure>
-              <img src={image} alt={name} />
+              <img src={imgURL} alt={name} />
             </figure>
             <div className='info'>
               <h3>{name}</h3>

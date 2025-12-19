@@ -4,13 +4,18 @@ import styled from 'styled-components';
 import { FiShoppingCart } from 'react-icons/fi';
 import { CgMenu, CgClose } from 'react-icons/cg';
 import { useCartContext } from '../context/cartContext';
-import { useAuth0 } from '@auth0/auth0-react';
+
 import { Button } from '../styles/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../store/authSlice';
+import { openAuthDrawer } from '../store/uiSlice';
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
   const { total_item } = useCartContext();
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -230,9 +235,7 @@ const Nav = () => {
           {isAuthenticated ? (
             <li>
               <Button
-                onClick={() =>
-                  logout({ logoutParams: { returnTo: window.location.origin } })
-                }
+                onClick={() => dispatch(logout())}
                 className='user-logout'
               >
                 Log Out
@@ -241,8 +244,8 @@ const Nav = () => {
           ) : (
             <li>
               <Button
-                onClick={() => loginWithRedirect()}
                 className='user-login'
+                onClick={() => dispatch(openAuthDrawer())}
               >
                 Log In
               </Button>

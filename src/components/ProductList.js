@@ -1,4 +1,3 @@
-// components/ProductList.jsx
 import React from 'react';
 import GridView from './GridView';
 import ListView from './ListView';

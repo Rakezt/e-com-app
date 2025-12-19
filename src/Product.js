@@ -48,7 +48,7 @@ const Card = styled(NavLink)`
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    height: 420px;
+    height: 350px;
     margin: 0;
     background: #fafafa;
   }
