@@ -14,7 +14,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Order from './components/Order';
 import Login from './Login';
-import AuthDrawer from './components/AuthDrawer';
+import AuthDrawer from './components/auth/AuthDrawer';
 
 const App = () => {
   const theme = {

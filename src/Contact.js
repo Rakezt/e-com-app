@@ -68,7 +68,7 @@ const Contact = () => {
             type='text'
             placeholder='Your Name'
             name='username'
-            value={isAuthenticated ? user.nickname : ''}
+            value={isAuthenticated ? user?.name : ''}
             required
           />
 

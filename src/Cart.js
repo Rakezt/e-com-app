@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { useCartContext } from "./context/cartContext";
-import CartItem from "./components/CartItem";
-import { NavLink } from "react-router-dom";
-import { Button } from "./styles/Button";
-import FormatPrice from "./Helper/FormatPrice";
-import { useAuth0 } from "@auth0/auth0-react";
+import styled from 'styled-components';
+import { useCartContext } from './context/cartContext';
+import CartItem from './components/CartItem';
+import { NavLink } from 'react-router-dom';
+import { Button } from './styles/Button';
+import FormatPrice from './Helper/FormatPrice';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Cart = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -19,35 +19,35 @@ const Cart = () => {
 
   return (
     <Wrapper>
-      <div className="container">
+      <div className='container'>
         {isAuthenticated && (
-          <div className="cart-user--profile">
-            <img src={user.picture} alt={user.nickname} />
-            <h2 className="cart-user--name">{user.nickname}</h2>
+          <div className='cart-user--profile'>
+            <img src={user.picture} alt={user?.name} />
+            <h2 className='cart-user--name'>{user?.name}</h2>
           </div>
         )}
-        <div className="cart-heading grid grid-five-column">
+        <div className='cart-heading grid grid-five-column'>
           <p>Item</p>
-          <p className="cart-hide">Price</p>
+          <p className='cart-hide'>Price</p>
           <p>Quantity</p>
-          <p className="cart-hide">Subtotal</p>
+          <p className='cart-hide'>Subtotal</p>
           <p>Remove</p>
         </div>
         <hr />
-        <div className="cart-item">
+        <div className='cart-item'>
           {cart.map((item) => {
             return <CartItem key={item.id} {...item} />;
           })}
         </div>
         <hr />
-        <div className="cart-two-button">
-          <NavLink to="/products">
+        <div className='cart-two-button'>
+          <NavLink to='/products'>
             <Button>Continue Shopping</Button>
           </NavLink>
           <Button onClick={clearCart}>Clear cart</Button>
         </div>
-        <div className="order-total--amount">
-          <div className="order-total--subdata">
+        <div className='order-total--amount'>
+          <div className='order-total--subdata'>
             <div>
               <p>Subtotal :</p>
               <p>
@@ -68,7 +68,7 @@ const Cart = () => {
               </p>
             </div>
           </div>
-          <NavLink to="/order">
+          <NavLink to='/order'>
             <Button>Place Order</Button>
           </NavLink>
         </div>

@@ -1,5 +1,5 @@
 const cartReducer = (state, action) => {
-  if (action.type === "ADD_TO_CART") {
+  if (action.type === 'ADD_TO_CART') {
     let { id, activeColor, amount, product } = action.payload;
 
     let existingProduct = state.cart.find(
@@ -42,20 +42,20 @@ const cartReducer = (state, action) => {
       };
     }
   }
-  if (action.type === "REMOVE_ITEM") {
+  if (action.type === 'REMOVE_ITEM') {
     let updatedCart = state.cart.filter((item) => item.id !== action.payload);
     return {
       ...state,
       cart: updatedCart,
     };
   }
-  if (action.type === "CLEAR_CART") {
+  if (action.type === 'CLEAR_CART') {
     return {
       ...state,
       cart: [],
     };
   }
-  if (action.type === "SET_INCREMENT") {
+  if (action.type === 'SET_INCREMENT') {
     let updatedCart = state.cart.map((item) => {
       if (item.id === action.payload) {
         let increaseAmount = item.amount + 1;
@@ -69,7 +69,7 @@ const cartReducer = (state, action) => {
     });
     return { ...state, cart: updatedCart };
   }
-  if (action.type === "SET_DECREMENT") {
+  if (action.type === 'SET_DECREMENT') {
     let updatedCart = state.cart.map((item) => {
       if (item.id === action.payload) {
         let decreaseAmount = item.amount - 1;
@@ -83,7 +83,7 @@ const cartReducer = (state, action) => {
     });
     return { ...state, cart: updatedCart };
   }
-  if (action.type === "CART_TOTAL_ITEM") {
+  if (action.type === 'CART_TOTAL_ITEM') {
     let updatedAmount = state.cart.reduce((acc, curr) => {
       let { amount } = curr;
       acc = acc + amount;
@@ -91,7 +91,7 @@ const cartReducer = (state, action) => {
     }, 0);
     return { ...state, total_item: updatedAmount };
   }
-  if (action.type === "CART_TOTAL_PRICE") {
+  if (action.type === 'CART_TOTAL_PRICE') {
     let updatedAmount = state.cart.reduce((acc, curr) => {
       let { price, amount } = curr;
       acc = acc + price * amount;
@@ -99,6 +99,31 @@ const cartReducer = (state, action) => {
     }, 0);
     return { ...state, total_price: updatedAmount };
   }
+  if (action.type === 'REPLACE_CART_FROM_BACKEND') {
+    const formattedCart = action.payload.map((item) => ({
+      id: item.product._id.toString(),
+      name: item.product.name,
+      activeColor: '#000000',
+      amount: item.qty,
+      image: item.product.images,
+      price: item.priceAtAddedTime,
+      max: item.product.stock,
+    }));
+
+    return {
+      ...state,
+      cart: formattedCart,
+    };
+  }
+  if (action.type === 'LOGOUT_CLEAR_CART') {
+    return {
+      ...state,
+      cart: [],
+      total_item: 0,
+      total_price: 0,
+    };
+  }
+
   return state;
 };
 

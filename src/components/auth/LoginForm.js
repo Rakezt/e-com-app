@@ -3,28 +3,59 @@ import { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { loginSuccess } from '../../store/authSlice';
-import { closeAuthDrawer } from '../../store/uiSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { closeAuthDrawer, openSignup } from '../../store/uiSlice';
+import { loginSchema } from '../../validation/loginSchema';
+import { ErrorText } from '../../Helper/ErrorText';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { useCartContext } from '../../context/cartContext';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState({});
+  const [apiError, setApiError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const { loadUserCart } = useCartContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const API = 'https://e-com-app-be.onrender.com/api/auth/login';
-    const res = await axios.post(API, form);
 
-    dispatch(
-      loginSuccess({
-        user: res.data.foundUser,
-        token: res.data.encodedToken,
-      })
-    );
+    const result = loginSchema.safeParse(form);
+    if (!result.success) {
+      const fieldErrors = {};
+      result.error.issues.forEach((err) => {
+        fieldErrors[err.path[0]] = err.message;
+      });
+      setError(fieldErrors);
+      return;
+    }
+    setError({});
+    setApiError('');
 
-    dispatch(closeAuthDrawer());
-    navigate('/');
+    try {
+      const API = 'https://e-com-app-be.onrender.com/api/auth/login';
+      const res = await axios.post(API, {
+        email: form.email,
+        password: form.password,
+      });
+
+      dispatch(
+        loginSuccess(
+          {
+            user: res.data.foundUser,
+            token: res.data.encodedToken,
+          },
+          loadUserCart()
+        )
+      );
+
+      dispatch(closeAuthDrawer());
+    } catch (error) {
+      const message = error?.response?.data?.error;
+
+      setApiError(message);
+    }
   };
 
   return (
@@ -39,23 +70,35 @@ const LoginForm = () => {
           <label>Email</label>
           <input
             type='email'
-            required
+            value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
+          {error.email && <ErrorText text={error.email} />}
         </InputGroup>
 
         <InputGroup>
           <label>Password</label>
-          <input
-            type='password'
-            required
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-          />
+          <PasswordWrapper>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+            <EyeButton
+              type='button'
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </EyeButton>
+          </PasswordWrapper>
+          {error.password && <ErrorText text={error.password} />}
         </InputGroup>
-
+        {apiError && <ErrorText text={apiError} />}
         <Button type='submit'>Log In</Button>
         <Footer>
-          New here? <Link to='/signup'>Create an account</Link>
+          New here?
+          <br />
+          <span onClick={() => dispatch(openSignup())}>Create an account</span>
         </Footer>
       </form>
     </>
@@ -128,10 +171,37 @@ const Footer = styled.p`
   margin-top: 3rem;
   font-size: 1.4rem;
 
-  a {
+  span {
     color: rgb(235, 143, 52);
     font-weight: 800;
-    text-decoration: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+const PasswordWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding-right: 4.5rem;
+  }
+`;
+
+const EyeButton = styled.button`
+  position: absolute;
+  right: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #000;
   }
 `;
 

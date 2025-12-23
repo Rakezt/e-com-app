@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -8,14 +8,19 @@ import { useCartContext } from '../context/cartContext';
 import { Button } from '../styles/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/authSlice';
-import { openAuthDrawer } from '../store/uiSlice';
+import { openLogin } from '../store/uiSlice';
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
-  const { total_item } = useCartContext();
+  const { total_item, clearCartOnLogout } = useCartContext();
 
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    clearCartOnLogout();
+    dispatch(logout());
+  };
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -230,14 +235,15 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
-          {isAuthenticated && <p>{user.nickname}</p>}
+          {isAuthenticated && (
+            <p className='user-login--name'>
+              {user?.firstname} {user?.lastname}
+            </p>
+          )}
 
           {isAuthenticated ? (
             <li>
-              <Button
-                onClick={() => dispatch(logout())}
-                className='user-logout'
-              >
+              <Button onClick={handleLogout} className='user-logout'>
                 Log Out
               </Button>
             </li>
@@ -245,7 +251,7 @@ const Nav = () => {
             <li>
               <Button
                 className='user-login'
-                onClick={() => dispatch(openAuthDrawer())}
+                onClick={() => dispatch(openLogin())}
               >
                 Log In
               </Button>

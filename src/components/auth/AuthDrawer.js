@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeAuthDrawer } from '../store/uiSlice';
-import LoginForm from './auth/LoginForm';
+import { closeAuthDrawer } from '../../store/uiSlice';
+import LoginForm from './LoginForm';
+import SignupForm from './SignUpForm';
 
 const AuthDrawer = () => {
   const dispatch = useDispatch();
-  const open = useSelector((state) => state.ui.authDrawerOpen);
+  const { authDrawerOpen, authMode } = useSelector((state) => state.ui);
 
-  if (!open) return null;
+  if (!authDrawerOpen) return null;
 
   return (
     <>
@@ -21,7 +22,7 @@ const AuthDrawer = () => {
           <p>Earn rewards. Track orders. Faster checkout.</p>
         </Brand>
 
-        <LoginForm />
+        {authMode === 'login' ? <LoginForm /> : <SignupForm />}
       </Drawer>
     </>
   );

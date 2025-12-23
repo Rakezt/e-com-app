@@ -4,10 +4,16 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     authDrawerOpen: false,
+    authMode: 'login',
   },
   reducers: {
-    openAuthDrawer(state) {
+    openLogin(state) {
       state.authDrawerOpen = true;
+      state.authMode = 'login';
+    },
+    openSignup(state) {
+      state.authDrawerOpen = true;
+      state.authMode = 'signup';
     },
     closeAuthDrawer(state) {
       state.authDrawerOpen = false;
@@ -15,5 +21,5 @@ const uiSlice = createSlice({
   },
 });
 
-export const { openAuthDrawer, closeAuthDrawer } = uiSlice.actions;
+export const { openLogin, openSignup, closeAuthDrawer } = uiSlice.actions;
 export default uiSlice.reducer;
