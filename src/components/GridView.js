@@ -22,12 +22,12 @@ const Wrapper = styled.section`
 
   @media (max-width: ${({ theme }) => theme.media.tab}) {
     .grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     .grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.4rem;
     }
   }

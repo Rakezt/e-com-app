@@ -48,7 +48,7 @@ const Card = styled(NavLink)`
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    height: 350px;
+    height: 250px;
     margin: 0;
     background: #fafafa;
   }
@@ -164,6 +164,23 @@ const Card = styled(NavLink)`
 
   &:hover .product-img.loaded {
     transform: scale(1.08);
+  }
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    figure {
+      height: 220px; 
+
+    .meta {
+      padding: 1.2rem;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .price {
+      font-size: 0.9rem;
+    }
   }
 `;
 
