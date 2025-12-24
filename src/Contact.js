@@ -1,13 +1,46 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { openLogin } from './store/uiSlice';
+import { contactSchema } from './validation/contactSchema';
+import { ErrorText } from './Helper/ErrorText';
 
 const Contact = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [mapLoaded, setMapLoaded] = useState(false);
+
+  const [form, setForm] = useState({
+    name: user?.firstname ? `${user.firstname} ${user.lastname}` : '',
+    email: user?.email || '',
+    message: '',
+  });
+  const [error, setError] = useState({});
+  const [submitError, setSubmitError] = useState('');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      setSubmitError('Please log in to contact us');
+      dispatch(openLogin());
+      return;
+    }
+    const result = contactSchema.safeParse(form);
+    if (!result.success) {
+      const fieldErrors = {};
+      result.error.issues.forEach(
+        (err) => (fieldErrors[err.path[0]] = err.message)
+      );
+      setError(fieldErrors);
+    }
+    setError({});
+    setSubmitError('');
+    e.target.submit();
+  };
 
   return (
     <Wrapper>
@@ -63,30 +96,40 @@ const Contact = () => {
           action='https://formspree.io/f/xleqglpe'
           method='POST'
           className='contact-form'
+          onSubmit={handleSubmit}
         >
-          <input
-            type='text'
-            placeholder='Your Name'
-            name='username'
-            value={isAuthenticated ? user?.name : ''}
-            required
-          />
-
-          <input
-            type='email'
-            placeholder='Email Address'
-            name='email'
-            value={isAuthenticated ? user.email : ''}
-            required
-          />
-
-          <textarea
-            placeholder='Write your message...'
-            name='message'
-            rows='8'
-            required
-          ></textarea>
-
+          <div>
+            <input
+              type='text'
+              placeholder='Your Name'
+              name='username'
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              required
+            />
+            {error.name && <ErrorText text={error.name} />}
+          </div>
+          <div>
+            <input
+              type='email'
+              placeholder='Email Address'
+              name='email'
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+            {error.email && <ErrorText text={error.email} />}
+          </div>
+          <div>
+            <textarea
+              placeholder='Write your message...'
+              name='message'
+              rows='6'
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+            />
+            {error.message && <ErrorText text={error.message} />}
+          </div>
+          {submitError && <ErrorText text={submitError} />}
           <button type='submit' className='submit-btn'>
             Send Message
           </button>

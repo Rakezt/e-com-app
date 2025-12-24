@@ -269,7 +269,10 @@ const Nav = () => {
           ) : (
             <Button
               className='user-login'
-              onClick={() => dispatch(openLogin())}
+              onClick={() => {
+                setMenuIcon(false);
+                dispatch(openLogin());
+              }}
             >
               Log In
             </Button>
