@@ -1,8 +1,7 @@
-// components/FilterSection.jsx
-import React from 'react';
 import styled from 'styled-components';
 import { FaCheck } from 'react-icons/fa';
 import { useFilterContext } from '../context/filterContext';
+import { useState } from 'react';
 
 const FilterSection = () => {
   const {
@@ -11,6 +10,7 @@ const FilterSection = () => {
     updateFilterValue,
     clearFilters,
   } = useFilterContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   const uniqueData = (data, prop) => {
     const vals = data.map((d) => d[prop]);
@@ -23,98 +23,104 @@ const FilterSection = () => {
   const colors = uniqueData(all_Products, 'colors');
 
   return (
-    <Wrapper className='filter-card'>
-      <div className='search'>
-        <input
-          type='text'
-          name='text'
-          placeholder='Search products...'
-          value={text}
-          onChange={updateFilterValue}
-        />
+    <Wrapper className={`filter-card ${isOpen ? 'open' : ''}`}>
+      <div className='mobile-filter-header' onClick={() => setIsOpen(!isOpen)}>
+        <span>Filters</span>
+        <span className='icon'>{isOpen ? '✕' : '+'}</span>
       </div>
+      <div className='filter-body'>
+        <div className='search'>
+          <input
+            type='text'
+            name='text'
+            placeholder='Search products...'
+            value={text}
+            onChange={updateFilterValue}
+          />
+        </div>
 
-      <div className='section'>
-        <h4>Category</h4>
-        <select name='category' value={category} onChange={updateFilterValue}>
-          {categories.map((comp, i) => (
-            <option key={i} value={comp}>
-              {comp}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className='section'>
+          <h4>Category</h4>
+          <select name='category' value={category} onChange={updateFilterValue}>
+            {categories.map((comp, i) => (
+              <option key={i} value={comp}>
+                {comp}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className='section'>
-        <h4>Brand</h4>
-        <select name='company' onChange={updateFilterValue} value={company}>
-          {companies.map((comp, i) => (
-            <option key={i} value={comp}>
-              {comp}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className='section'>
+          <h4>Brand</h4>
+          <select name='company' onChange={updateFilterValue} value={company}>
+            {companies.map((comp, i) => (
+              <option key={i} value={comp}>
+                {comp}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className='section'>
-        <h4>Colors</h4>
-        <div className='colors'>
-          {colors.map((c, i) => {
-            if (c === 'all')
+        <div className='section'>
+          <h4>Colors</h4>
+          <div className='colors'>
+            {colors.map((c, i) => {
+              if (c === 'all')
+                return (
+                  <button
+                    key={i}
+                    name='color'
+                    value='all'
+                    className={`color-chip all ${
+                      color === 'all' ? 'active' : ''
+                    }`}
+                    onClick={updateFilterValue}
+                  >
+                    All
+                  </button>
+                );
               return (
                 <button
                   key={i}
                   name='color'
-                  value='all'
-                  className={`color-chip all ${
-                    color === 'all' ? 'active' : ''
-                  }`}
+                  value={c}
+                  className={`color-chip ${color === c ? 'active' : ''}`}
+                  style={{ background: c }}
                   onClick={updateFilterValue}
+                  aria-label={c}
                 >
-                  All
+                  {color === c && <FaCheck className='check' />}
                 </button>
               );
-            return (
-              <button
-                key={i}
-                name='color'
-                value={c}
-                className={`color-chip ${color === c ? 'active' : ''}`}
-                style={{ background: c }}
-                onClick={updateFilterValue}
-                aria-label={c}
-              >
-                {color === c && <FaCheck className='check' />}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className='section'>
-        <h4>Price</h4>
-        <p className='price-preview'>
-          Price:{' '}
-          <strong>
-            {(price / 100).toLocaleString('en-IN', {
-              style: 'currency',
-              currency: 'INR',
             })}
-          </strong>
-        </p>
-        <input
-          type='range'
-          min={minPrice}
-          max={maxPrice}
-          name='price'
-          value={price}
-          onChange={updateFilterValue}
-        />
-      </div>
+          </div>
+        </div>
 
-      <button className='clear' onClick={clearFilters}>
-        Clear Filters
-      </button>
+        <div className='section'>
+          <h4>Price</h4>
+          <p className='price-preview'>
+            Price:{' '}
+            <strong>
+              {(price / 100).toLocaleString('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+              })}
+            </strong>
+          </p>
+          <input
+            type='range'
+            min={minPrice}
+            max={maxPrice}
+            name='price'
+            value={price}
+            onChange={updateFilterValue}
+          />
+        </div>
+
+        <button className='clear' onClick={clearFilters}>
+          Clear Filters
+        </button>
+      </div>
     </Wrapper>
   );
 };
@@ -236,9 +242,40 @@ const Wrapper = styled.aside`
     transform: translateY(-3px);
   }
 
+  /* ---------- MOBILE COLLAPSIBLE FILTER ---------- */
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    position: relative;
-    top: 0;
+    .mobile-filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      color: #fff;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .mobile-filter-header .icon {
+      font-size: 1.6rem;
+    }
+
+    .filter-body {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: all 0.35s ease;
+    }
+
+    &.open .filter-body {
+      max-height: 2000px; /* enough for content */
+      opacity: 1;
+      transform: translateY(0);
+      margin-top: 1rem;
+    }
   }
 `;
 
