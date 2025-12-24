@@ -1,4 +1,6 @@
 # 🛹 Skateboard E-Commerce Platform
+<img width="900" height="440" alt="image" src="https://github.com/user-attachments/assets/9f35bc1a-48b1-49be-9c53-da598c8a18e3" />
+
 
 A modern skateboard e-commerce web application built with **React** and a **Node.js backend**, focusing on responsive UI, clean architecture, and scalable backend design.
 
